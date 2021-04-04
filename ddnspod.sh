@@ -266,7 +266,7 @@ arDdnsCheck() {
             fi
         fi
         echo "Last IP is the same as current, no action."
-        return 1
+        return 0
     fi
     echo ${lastIP}
     return 1
