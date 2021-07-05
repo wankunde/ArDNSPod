@@ -26,7 +26,11 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/${GITHUB_REPOSITORY#*/}
+          if [ x${{ env.IMAGE_NAME }} == x"" ]; then
+            DOCKER_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/${GITHUB_REPOSITORY#*/}
+          else
+            DOCKER_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+          fi
           VERSION=latest
           SHORTREF=${GITHUB_SHA::8}
 
@@ -62,8 +66,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # get image tag name
