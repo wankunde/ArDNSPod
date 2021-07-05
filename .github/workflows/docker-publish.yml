@@ -16,7 +16,7 @@ env:
   IMAGE_NAME: ardnspod # Image name must in lower case
   
 jobs:
-  build:
+  bild and public docker image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
