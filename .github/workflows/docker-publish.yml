@@ -9,6 +9,9 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: ardnspod # Image name must in lower case
+  
 jobs:
   build:
     runs-on: ubuntu-latest
