@@ -73,7 +73,11 @@ Forked form anrip/ArDNSPod
 
 # Docker Support
 
+* Generate DNSPOD token : Go to `https://console.dnspod.cn/account/token/token` -  账号中心 - API密钥 - DNSPOD Token
 * Build Docker Image : `docker build -t ardnspod:1.0 .`
-* Run Docker Image : `docker run -v /tmp/dns.conf:/ArDNSPod/dns.conf --name ardnspod ardnspod:1.0`
+* Config dnspod.conf, subdomain configuration:
+  * `*` : 直接解析主域名 domain.org
+  * `@` : 泛解析，匹配其他所有域名 
+* Run Docker Image : `docker run -v /etc/dnspod.conf:/ArDNSPod/dns.conf --name ardnspod ardnspod:1.0`
 * The follow Task : `docker start ardnspod`
 * Check container logs : `docker logs ardnspod`
